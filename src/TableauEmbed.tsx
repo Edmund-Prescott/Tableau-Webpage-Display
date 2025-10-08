@@ -19,12 +19,12 @@ const TableauEmbed: React.FC = () => {
       { name: "site_root", value: "" },
       { name: "name", value: "Edmund_Prescott_Getting_Started_with_Tableau/Sheet1" },
       { name: "tabs", value: "no" },
-      { name: "toolbar", value: "yes" },
-      { name: "animate_transition", value: "yes" },
-      { name: "display_static_image", value: "yes" },
-      { name: "display_spinner", value: "yes" },
-      { name: "display_overlay", value: "yes" },
-      { name: "display_count", value: "yes" },
+      { name: "toolbar", value: "no" },
+      { name: "animate_transition", value: "no" },
+      { name: "display_static_image", value: "no" },
+      { name: "display_spinner", value: "no" },
+      { name: "display_overlay", value: "no" },
+      { name: "display_count", value: "no" },
       { name: "language", value: "en-US" },
     ];
 
