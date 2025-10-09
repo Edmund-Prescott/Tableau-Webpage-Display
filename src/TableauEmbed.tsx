@@ -1,18 +1,25 @@
 import React, { useEffect, useRef } from "react";
+import { Container } from "react-bootstrap";
 
 const TableauEmbed: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const vizRef = useRef<HTMLObjectElement | null>(null);
 
   useEffect(() => {
-    const divElement = containerRef.current;
-    if (!divElement) return;
+    const container = containerRef.current;
+    if (!container) return;
 
-    // Create <object> for Tableau
-    const vizElement = document.createElement("object");
-    vizElement.className = "tableauViz";
-    vizElement.style.display = "none";
+    // Clear previous content
+    container.innerHTML = "";
 
-    // Tableau embed params
+    // Create Tableau <object>
+    const viz = document.createElement("object");
+    viz.className = "tableauViz";
+    viz.style.width = "100%";
+    viz.style.height = "100%";
+    vizRef.current = viz;
+
+    // Tableau parameters
     const params = [
       { name: "host_url", value: "https%3A%2F%2Fpublic.tableau.com%2F" },
       { name: "embed_code_version", value: "3" },
@@ -28,31 +35,55 @@ const TableauEmbed: React.FC = () => {
       { name: "language", value: "en-US" },
     ];
 
-    params.forEach(p => {
+    params.forEach((p) => {
       const paramEl = document.createElement("param");
       paramEl.setAttribute("name", p.name);
       paramEl.setAttribute("value", p.value);
-      vizElement.appendChild(paramEl);
+      viz.appendChild(paramEl);
     });
 
-    divElement.innerHTML = ""; // clear if rerender
-    divElement.appendChild(vizElement);
+    container.appendChild(viz);
 
     // Load Tableau JS API
-    const scriptElement = document.createElement("script");
-    scriptElement.src = "https://public.tableau.com/javascripts/api/viz_v1.js";
-    vizElement.parentNode?.insertBefore(scriptElement, vizElement);
+    const script = document.createElement("script");
+    script.src = "https://public.tableau.com/javascripts/api/viz_v1.js";
+    container.appendChild(script);
 
-    // Resize logic
-    vizElement.style.width = "100%";
-    vizElement.style.height = divElement.offsetWidth * 0.75 + "px";
+    // Resize function: fills container height while keeping width 100%
+    const resizeViz = () => {
+      if (!viz || !container) return;
+
+      const parentHeight = container.parentElement?.clientHeight || 600;
+      const parentWidth = container.parentElement?.clientWidth || 800;
+
+      // Calculate height based on parent flex layout:
+      // Fit either height of text section or width-based ratio
+      const newHeight = Math.max(parentHeight * 0.6, parentWidth * 0.5);
+
+      viz.style.width = "100%";
+      viz.style.height = `${newHeight}px`;
+    };
+
+    // Initial resize
+    resizeViz();
+
+    // Update on window resize
+    window.addEventListener("resize", resizeViz);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener("resize", resizeViz);
+    };
   }, []);
 
   return (
-    <div
-      ref={containerRef}
-      style={{ width: "100%", position: "relative", minHeight: "600px" }}
-    />
+    <>
+    <p>Example text</p>
+      <div
+        ref={containerRef}
+        style={{ margin: "0 auto", width: "80%", height: "10%", maxHeight: "100px" }}
+      />
+    </>
   );
 };
 
