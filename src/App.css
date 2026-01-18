@@ -6,9 +6,9 @@ html, body, #root {
   width: 100%;
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
-  background: radial-gradient(circle at top left, #1a1a2e, #0f0f1a);
-  color: #e0e0e0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: radial-gradient(circle at top left, #1c1e26, #0f1117);
+  color: #e8e8e8;
 }
 
 /* ===========================
@@ -23,11 +23,11 @@ html, body, #root {
   align-items: center;
   justify-content: space-between;
 
-  background: rgba(10, 10, 25, 0.7);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(20, 25, 35, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  padding: .75rem;
+  padding: 0.75rem 1rem;
   z-index: 1000;
 }
 
@@ -35,18 +35,18 @@ html, body, #root {
    Navigation Links
 =========================== */
 nav a {
-  color: #b0b8ff;
+  color: #4e79a7; /* Tableau Blue */
   text-decoration: none;
   font-weight: 500;
-  font-size: xx-large;
+  font-size: 1.4rem;
   padding: 8px 14px;
   border-radius: 6px;
-  transition: background 0.2s, color 0.2s, transform 0.2s;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
 }
 
 nav a:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  background: rgba(78, 121, 167, 0.15);
+  color: #f28e2b; /* Tableau Orange */
   transform: translateY(-2px);
 }
 
@@ -69,9 +69,6 @@ h1 {
   font-weight: 700;
   display: flex;
   justify-content: center;
-  background: linear-gradient(90deg, #80aaff, #c084fc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInDown 0.8s ease-out forwards;
@@ -81,7 +78,6 @@ h1 {
 /* ===========================
    Layout Containers
 =========================== */
-
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -98,6 +94,9 @@ h1 {
   height: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
 
   opacity: 0;
   transform: translateY(20px);
@@ -112,35 +111,32 @@ h1 {
   max-width: 500px;
   font-size: 1.2rem;
   line-height: 1.6;
-  color: #f0f0f0;
+  color: #bab0ac; /* Tableau Light Gray */
 }
 
 /* ===========================
    Images
 =========================== */
 img {
-  width: 50%;
+  width: 45%;
   height: auto;
   border-radius: 12px;
-  transition: all 0.2s ease;
+  border: 2px solid rgba(78, 121, 167, 0.3);
+  transition: all 0.3s ease;
 }
 
 img:hover {
   transform: scale(1.02);
+  border-color: #f28e2b; /* Highlight with orange */
 }
 
 /* ===========================
    Responsive Design
 =========================== */
 @media (max-width: 900px) {
-  .hero {
+  .Landing {
     flex-direction: column;
     text-align: center;
-  }
-
-  .hero img,
-  .hero p {
-    max-width: 100%;
   }
 
   .Introduction {
@@ -149,7 +145,6 @@ img:hover {
   }
 
   img {
-    width: 100%;
+    width: 90%;
   }
-
 }

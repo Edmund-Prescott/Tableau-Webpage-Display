@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import { Container } from "react-bootstrap";
 
 const TableauEmbed: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);

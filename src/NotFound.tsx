@@ -1,6 +1,4 @@
 import { Container } from "react-bootstrap";
-import { Route } from "react-router-dom";
-import Landing from "./Landing";
 
 export default function NotFound() {
   return (
